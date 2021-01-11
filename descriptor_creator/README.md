@@ -6,7 +6,9 @@ In order to use the facial recognition features of this image, descriptors need 
 
 In the folder `./descriptor_creator` exists a simple script `descriptor-creator.js` which when run creates a `descriptor.json` file.
 
-There are two critical folders under `./descriptor_creator`. The `faces` dir where you need to place labelled folders for each person you wish to recognise. In each labelled folder can reside as many photos of that person for recognition. As an example the repo comes with Penny and Sheldon folders for testing
+There are two critical folders under `./descriptor_creator`;
+
+The `faces` dir where you need to place labelled folders for each person you wish to recognise. In each labelled folder can reside as many photos of that person for recognition. As an example the repo comes with Penny and Sheldon folders for testing
 
 The `detections` is where the recognised faces are saved for validation to make sure the algorithm managed to find a good face.
 
