@@ -3,6 +3,4 @@ node_modules
 
 descriptors.json
 
-descriptor_creator/detections/*
-descriptor_creator/faces/*
 descriptor_creator/descriptors.json
