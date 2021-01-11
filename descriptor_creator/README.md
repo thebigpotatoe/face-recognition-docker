@@ -2,8 +2,6 @@
 
 In order to use the facial recognition features of this image, descriptors need to be provided to the application to match against. These descriptors are calculated values of known faces using face-api.js. These need to be generated before and passed to a running container via several methods as described.
 
-___
-
 ## Setup the descriptor_creator directory
 
 In the folder `./descriptor_creator` exists a simple script `descriptor-creator.js` which when run creates a `descriptor.json` file.
@@ -28,8 +26,6 @@ By default, the repo structure should look like this before running the scripts;
         └── Sheldon3.jpg
 ```
 
-___
-
 ## Run descriptor-creator.js
 
 To run the script you will either need `nodejs` installed or another way of running the script such as in its own docker container even.
@@ -50,8 +46,6 @@ $: npm i
 $: cd descriptor_creator
 $: node descriptor-creator.js
 ```
-
-___
 
 ## Check Outputs
 
@@ -79,8 +73,6 @@ After running the script a `descriptors.json` file will be created and the label
         ├── Sheldon2.jpg
         └── Sheldon3.jpg
 ```
-
-___
 
 ## Check descriptor.json
 
@@ -131,10 +123,6 @@ The `descriptors.json` file will then need to be passed to the running container
 ]
 ```
 
-___
-
 ## TODO
 
 - Create a docker build script to compute the descriptors for an isolated environment
-
-___
