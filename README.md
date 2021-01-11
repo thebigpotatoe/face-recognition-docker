@@ -4,8 +4,6 @@ This repo is the base of the docker hub image thebigpotatoe/face-recognition-doc
 
 This application can be run in a container directly from docker hub, or the express app can be run locally if desired. Just follow the Readme for more info.
 
-___
-
 ## Contents
 
 - [Quick Start](#Quick-Start)
@@ -15,7 +13,6 @@ ___
 - [Endpoint Specification](#Endpoint-Specification)
 
 For info on creating descriptors see the [documentation inside the descriptor_creator example](./descriptor_creator/README.md).
-___
 
 ## Quick Start
 
@@ -26,8 +23,6 @@ docker run \
 ```
 
 > Note this example is to get your feet wet, it does not provide facial recognition until you follow the [inject descriptors](#Injecting-Descriptors) section
-
-___
 
 ## How To Use
 
@@ -75,8 +70,6 @@ $: node app/app.js
 ```
 
 > Note that the versions of nodejs, face-api.js, and tf-js have very few working combinations. The current `package.json` has working versions of the packages which seem to work on node 10 and 15 (those were the ones tested)
-
-___
 
 ## Injecting Descriptors
 
@@ -182,8 +175,6 @@ docker run \
     --name facial-detection \
     my-new-image:latest
 ```
-
-___
 
 ## Environmental Variables
 
@@ -389,5 +380,3 @@ There are three endpoints exposed from the server, each provides a different ser
 - __Sample Call:__
 
   `/options?expressions=true&age_gender=true`
-
-___
