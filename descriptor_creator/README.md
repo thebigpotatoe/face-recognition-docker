@@ -8,9 +8,9 @@ In the folder `./descriptor_creator` exists a simple script `descriptor-creator.
 
 There are two critical folders under `./descriptor_creator`;
 
- - The `faces` dir where you need to place labelled folders for each person you wish to recognise. In each labelled folder can reside as many photos of that person for recognition. As an example the repo comes with Penny and Sheldon folders for testing
+ - The `faces` folder where you need to place labelled folders for each person you wish to recognise. In each labelled folder can reside as many photos of that person for recognition. As an example the repo comes with Penny and Sheldon folders for testing
 
- - The `detections` is where the recognised faces are saved for validation to make sure the algorithm managed to find a good face.
+ - The `detections` folder is where the recognised faces are saved for validation to make sure the algorithm managed to find a good face.
 
 By default, the repo structure should look like this before running the scripts;
 
