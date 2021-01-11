@@ -1,0 +1,19 @@
+{
+    "name": "docker-faceapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@tensorflow/tfjs-node": "^1.2.11",
+        "canvas": "^2.6.1",
+        "express": "^4.17.1",
+        "express-list-endpoints": "^5.0.0",
+        "face-api.js": "^0.21.0",
+        "multer": "^1.4.2"
+    }
+}
