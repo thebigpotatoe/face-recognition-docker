@@ -32,7 +32,7 @@ This application is flexible with how it can be configured and run. Below are a 
 
 ### Running Standalone Container
 
-Running standalone is a quick easy way of getting started with this image. There are multiple ways of passing a descriptor to a singular container described in [injecting descriptors section](#Injecting-Descriptors), but for this example we will use bind mounts.
+Running a standalone is a quick easy way of getting started with this image. There are multiple ways of passing a descriptor to a singular container described in [injecting descriptors section](#Injecting-Descriptors), but for this example we will use bind mounts.
 
 It is assumed that you have a `descriptors.json` file stored somewhere you care about. For this example it will be in `/usr/descriptors/descriptors.json` on the host machine. Therefore you can run a bind mount using;
 
