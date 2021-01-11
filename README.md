@@ -75,7 +75,7 @@ $: node app/app.js
 
 > Please read the [documentation inside the descriptor_creator example](./descriptor_creator/README.md) before proceeding
 
-After building the descriptors for your application, they will then need to be passed into the container for use by the application. The application is flexible by allowing the descriptors path the be changed using environmental variables which opens up the options for using all of dockers ways of injecting files into a container.
+After building the descriptors for your application, they will then need to be passed into the container for use by the application. The application is flexible by allowing the descriptors path to be changed using environmental variables which opens up the options for using all of dockers ways of injecting files into a container.
 
 ### The descriptor location
 
