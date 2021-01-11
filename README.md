@@ -98,7 +98,7 @@ For testing you can use a bind mount to load your descriptors directly into the 
 ```docker
 docker run \
     -p 1890:1890 \
-    --mount type=bind,source="$(pwd)"/descriptors.json,target=/usr/app/descriptors.json \
+    --mount type=bind,source="$(pwd)"/descriptor_creator/descriptors.json,target=/usr/app/descriptors.json \
     --name facial-detection \
     thebigpotatoe/face-recognition-docker
 ```
@@ -121,7 +121,7 @@ docker run \
 Then from where your descriptors are, copy them into the container with the volume using:
 
 ```docker
-docker cp ./descriptors.json volume-copy:/data
+docker cp ./descriptor_creator/descriptors.json volume-copy:/data
 ```
 
 Then start a standalone application container pointing the volume and application to the same location;
@@ -140,7 +140,7 @@ docker run \
 If you are using docker swarm it may be a good idea to use secrets. Simply use the `docker secret create [secret name] [file]` to turn the `descriptors.json` file into a secret for use with services;
 
 ```docker
-docker secret create descriptors ./descriptors.json
+docker secret create descriptors ./descriptor_creator/descriptors.json
 ```
 
 Then as an example start a service using the secret;
