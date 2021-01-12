@@ -5,7 +5,8 @@ descriptor_path = process.env.DESCRIPTOR_PATH || './app/descriptors.json';
 use_tf = process.env.USE_TF || 'true';
 
 // Load Tensorflow.js 
-if (use_tf === 'true') require('@tensorflow/tfjs-node');
+const os = require('os');
+if (use_tf === 'true' && os.arch() === 'x64') require('@tensorflow/tfjs-node');
 
 // Import the express modules
 let express = require('express');
