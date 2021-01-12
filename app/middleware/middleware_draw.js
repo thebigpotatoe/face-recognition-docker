@@ -23,6 +23,7 @@ module.exports = async function (req, res, next) {
             }
             else {
                 console.warn("No results found in req.matches to draw");
+                req.drawn_canvas = req.canvas;
                 next();
             }
         }
