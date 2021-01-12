@@ -17,7 +17,7 @@ module.exports = async function (img, model_options, detection_options, face_mat
                 model_selector(img, model_options, detection_options).then((detections) => {
                     console.log('Face recognition took', Date.now() - start_time, 'ms');
                     // Check if there were any valid detections
-                    if (detections) {
+                    if (detections && detections.length) {
                         // Create a matched face buffer 
                         matched_faces = [];
 
