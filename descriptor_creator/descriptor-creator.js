@@ -1,21 +1,31 @@
+// Get the environmental variables
+const use_tf = (process.env.USE_TF == 'true') || true
+const weights_path = process.env.WEIGHTS_PATH || `./app/weights`
+const faces_folder = process.env.FACES_FOLDER || `./descriptor_creator/faces`;
+const dectections_folder = process.env.DETECTION_FOLDER || `./descriptor_creator/detections`;
+const descriptor_save_path = process.env.DESCRIPTOR_SAVE_PATH || `./descriptor_creator`
+
 // Import the packages
 const fs = require('fs');
-const canvas = require('canvas');
-const tf = require('@tensorflow/tfjs');
-const faceapi = require('face-api.js');
+const path = require('path');
 
-// Print packages for debug
-console.log('loaded tf', tf.version_core);
+// Import face-api.js
+const canvas = require('canvas');
+const faceapi = require('face-api.js')
+const { Canvas, Image, ImageData } = canvas
+faceapi.env.monkeyPatch({ Canvas, Image, ImageData });
 console.log('loaded faceapi', faceapi.tf.version_core);
 
-// Monkey patch nodejs to faceapi with canvas
-const { Canvas, Image, ImageData } = canvas
-faceapi.env.monkeyPatch({ Canvas, Image, ImageData })
+// Load in tfjs-node if desired
+if (use_tf) {
+    const tf = require('@tensorflow/tfjs');
+    console.log('loaded tf', tf.version_core);
+}
 
 // Load in the models
 async function load_models() {
     try {
-        const modelPath = `../app/weights`;
+        const modelPath = weights_path;
         const ssdMobilenetv1Method = faceapi.nets.ssdMobilenetv1.loadFromDisk(modelPath)
         const faceLandmark68NetMethod = faceapi.nets.faceLandmark68Net.loadFromDisk(modelPath)
         const faceRecognitionNetMethod = faceapi.nets.faceRecognitionNet.loadFromDisk(modelPath)
@@ -34,10 +44,6 @@ async function load_models() {
 
 // Load the images and create descriptiors
 async function create_descriptors() {
-    // Set up folders
-    faces_folder = `${__dirname}/faces`;
-    dectections_folder = `${__dirname}/detections`;
-
     // Set up globals
     let folders_processed = 0;
     let labelled_descriptors = []
@@ -46,7 +52,7 @@ async function create_descriptors() {
     fs.readdir(faces_folder, (err, folders) => {
         folders.forEach(async function (folder) {
             // Current folder
-            let current_folder = faces_folder + '/' + folder
+            let current_folder = path.join(faces_folder, folder);
 
             // Read each file in the folder
             fs.readdir(current_folder, (err, files) => {
@@ -62,7 +68,7 @@ async function create_descriptors() {
                     console.log("- Started processing " + file)
 
                     // Read file from system 
-                    const file_data = fs.readFileSync(current_folder + '/' + file)
+                    const file_data = fs.readFileSync(path.join(current_folder, file))
 
                     // Create a new image to run detection on
                     const img = new Image;
@@ -80,9 +86,9 @@ async function create_descriptors() {
                     faceapi.draw.drawFaceLandmarks(detected_img, detections)
 
                     // Save the detected image
-                    const saveDir = dectections_folder + '/' + folder;
+                    const saveDir = path.join(dectections_folder, folder);
                     if (!fs.existsSync(saveDir)) fs.mkdirSync(saveDir);
-                    fs.writeFileSync(saveDir + "/detected-" + file, detected_img.toBuffer())
+                    fs.writeFileSync(path.join(saveDir, "/detected-" + file), detected_img.toBuffer())
 
                     // If the array is at the end create a labelled descriptor 
                     files_processed++
@@ -99,7 +105,7 @@ async function create_descriptors() {
                         console.log("Finsihed processing folder " + folder + " (" + folders_processed + " out of " + folders.length + ")")
                         if (folders_processed === folders.length && labelled_descriptors.length) {
                             console.log('Saving descriptors')
-                            fs.writeFileSync(`${__dirname}/descriptors.json`, JSON.stringify(labelled_descriptors))
+                            fs.writeFileSync(path.join(descriptor_save_path, `descriptors.json`), JSON.stringify(labelled_descriptors))
                         }
                     }
                 });
