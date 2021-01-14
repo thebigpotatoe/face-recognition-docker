@@ -4,7 +4,7 @@ FROM node:15
 # Install build tools
 RUN apt-get update -y && apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
-# Install npm packages 
+# Change working directory
 WORKDIR /usr/app
 
 # Install NPM packages individually
