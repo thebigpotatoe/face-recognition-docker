@@ -6,7 +6,10 @@ use_tf = process.env.USE_TF || 'true';
 
 // Load Tensorflow.js 
 const os = require('os');
-if (use_tf === 'true' && os.arch() === 'x64') require('@tensorflow/tfjs-node');
+if (use_tf === 'true' && os.arch() === 'x64') {
+    const tf = require('@tensorflow/tfjs-node');
+    console.log('Loaded tfjs-node version', tf.version_core);
+}
 
 // Import the express modules
 let express = require('express');
