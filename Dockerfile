@@ -25,6 +25,7 @@ ENV DETECTION_OPTIONS='{}'
 
 # Copy in application files and folders
 COPY ./app /usr/app
+# COPY ./descriptor_creator/descriptors.json /usr/app/descriptors.json # Uncomment to back in descriptors
 
 # Start app.js with node
 CMD ["node","app.js"]
