@@ -24,9 +24,13 @@ const parse_detection_options = require('./helpers/parse_detection_options');
 // Load in Application Variables 
 load_models(weights_path).then((result) => {
     app.locals.models_loaded = result;
+}).catch(err => {
+    throw(err);
 })
 load_descriptors(descriptor_path).then(matchers => {
     app.locals.face_matchers = matchers;
+}).catch(err => {
+    console.warn("No descriptors loaded on start\n", err);
 });
 app.locals.model_options = parse_model_options(process.env.MODEL_OPTIONS || { model: 'ssd', minConfidence: 0.6 });
 app.locals.detection_options = parse_detection_options(process.env.DETECTION_OPTIONS || {});
