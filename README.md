@@ -4,7 +4,7 @@
 
 This repo is the base of the docker hub image thebigpotatoe/face-recognition-docker. It wraps the incredible [face-api.js](#https://github.com/justadudewhohacks/face-api.js/) library using nodejs and express to deliver a flexible http server for facial recognition in a container.
 
-This application can be run in a container directly from docker hub, or the express app can be run locally if desired. Just follow the Readme for more info.
+This application can be run in a container directly from docker hub on multiple architectures, or the express app can be run locally if desired. Just follow the Readme for more info.
 
 ## Contents
 
@@ -26,13 +26,17 @@ docker run \
 
 > Note this example is to get your feet wet, it does not provide facial recognition until you follow the [inject descriptors](#Injecting-Descriptors) section
 
+## Current Limitaions
+
+Currently, tfjs-node does not work on the raspberry pi (or at least in the tested configurations). The app will still work but will be slow. Any suggestions on the matter are welcome as an issue or pull request :smile:
+
 ## How To Use
 
 > As a prerequisite for new users, read the [documentation inside the descriptor_creator example](./descriptor_creator/README.md) on how to create descriptors for facial recognition and read the [injecting descriptors section](#Injecting-Descriptors) below to get an understanding on how to use them.
 
 This application is flexible with how it can be configured and run. Below are a few options of how to deploy this into your environment to suit your needs.
 
-### Running Standalone Container
+### Running as a Standalone Container
 
 Running a standalone is a quick easy way of getting started with this image. There are multiple ways of passing a descriptor to a singular container described in [injecting descriptors section](#Injecting-Descriptors), but for this example we will use bind mounts.
 
@@ -46,7 +50,7 @@ docker run \
     thebigpotatoe/face-recognition-docker
 ```
 
-### Running as Service
+### Running as a Service
 
 The image can also be run as a service using secrets to pass the descriptor information. This is a more production ready application example, and assumes that you have created a secret call `descriptors` which is available to your environment;
 
