@@ -4,15 +4,22 @@ In order to use the facial recognition features of this image, descriptors need 
 
 ## Setup the descriptor_creator directory
 
-In the folder `./descriptor_creator` exists a simple script `descriptor-creator.js` which when run creates a `descriptor.json` file.
+Start by cloning the repo into a known location;
 
-There are two critical folders under `./descriptor_creator`;
+```console
+$ git clone https://github.com/thebigpotatoe/face-recognition-docker.git
+$ cd face-recognition-docker
+```
+
+In the folder `./descriptor_creator` exists a simple script `descriptor-creator.js` which when run via two methods creates a `descriptor.json` file.
+
+There are two critical folders under `./descriptor_creator` for creating descriptors for known faces;
 
  - The `faces` folder where you need to place labelled folders for each person you wish to recognise. In each labelled folder can reside as many photos of that person for recognition. As an example the repo comes with Penny and Sheldon folders for testing
 
- - The `detections` folder is where the recognised faces are saved for validation to make sure the algorithm managed to find a good face.
+ - The `detections` folder is where the recognised faces from the descriptor creation process are saved for validation to make sure the algorithm managed to find a good face.
 
-By default, the repo structure should look like this before running the scripts;
+By default, the repo structure in `./descripor_creater/` should look like this before running the scripts;
 
 ```bash
 ├── descriptor-creator.js
@@ -30,23 +37,23 @@ By default, the repo structure should look like this before running the scripts;
 
 ## Run descriptor-creator.js
 
-To run the script you will either need `nodejs` installed or another way of running the script such as in its own docker container even.
+### Using Docker 
 
-Then simply clone the repository, install the requirements from the `package.json`, then run the script from inside the `./descriptor_creator` directory;
+Since you most likely have docker installed the easiest way to run the `descriptor-creators.js` script is with the docker build file in the root of this repo. Using the following commands runs a nodejs environment and exports the important files and folders;
 
-### Setup repo
+> Note that buildx is required but supported out of the box by modern docker builds. If exporting the files does not work correctly or not produce any errors on failure you may need to find how to enable buildx on your machine. If you are having issues on your platform exporting the descriptors, look for how to use buildx on your platform.
 
-``` bash
-$: git clone https://github.com/thebigpotatoe/face-recognition-docker.git
-$: cd face-recognition-docker
-$: npm i
+```docker
+docker buildx build -f build-descriptors.dockerfile -o descriptor_creator .
 ```
 
-### Run script
+### Using Node JS
 
-``` bash
-$: cd descriptor_creator
-$: node descriptor-creator.js
+Alternatively if you have `nodejs` installed and want to run locally without docker then simply install the requirements from the `package.json`, then run the script from the root of the repo;
+
+```console
+$ npm i
+$ node ./descriptor_creator/descriptor-creator.js
 ```
 
 ## Check Outputs
@@ -124,7 +131,3 @@ The `descriptors.json` file will then need to be passed to the running container
   }
 ]
 ```
-
-## TODO
-
-- Create a docker build script to compute the descriptors for an isolated environment
