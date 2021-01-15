@@ -36,7 +36,7 @@ Currently, tfjs-node does not work on the raspberry pi (or at least in the teste
 
 This application is flexible with how it can be configured and run. Below are a few options of how to deploy this into your environment to suit your needs.
 
-### Running Standalone Container
+### Running as a Standalone Container
 
 Running a standalone is a quick easy way of getting started with this image. There are multiple ways of passing a descriptor to a singular container described in [injecting descriptors section](#Injecting-Descriptors), but for this example we will use bind mounts.
 
@@ -50,7 +50,7 @@ docker run \
     thebigpotatoe/face-recognition-docker
 ```
 
-### Running as Service
+### Running as a Service
 
 The image can also be run as a service using secrets to pass the descriptor information. This is a more production ready application example, and assumes that you have created a secret call `descriptors` which is available to your environment;
 
