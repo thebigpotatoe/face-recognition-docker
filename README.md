@@ -1,5 +1,7 @@
 # Face-Recognition-Docker
 
+![tbbt-example.jpeg](./resources/tbbt-example.jpeg)
+
 This repo is the base of the docker hub image thebigpotatoe/face-recognition-docker. It wraps the incredible [face-api.js](#https://github.com/justadudewhohacks/face-api.js/) library using nodejs and express to deliver a flexible http server for facial recognition in a container.
 
 This application can be run in a container directly from docker hub, or the express app can be run locally if desired. Just follow the Readme for more info.
