@@ -29,6 +29,7 @@ RUN node descriptor-creator.js
 # Export the descriptors
 FROM scratch AS export
 COPY --from=build /usr/app/descriptors.json /descriptors.json
+COPY --from=build /usr/app/detections /detections
 
 # From root of this repo:
-# docker build -t test -f build-descriptors.dockerfile -o descriptor_creator .
+# docker buildx build -f build-descriptors.dockerfile -o descriptor_creator .
