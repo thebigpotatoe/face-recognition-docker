@@ -28,7 +28,7 @@ docker run \
 
 ## Current Limitaions
 
-Currently, tfjs-node does not work on the raspberry pi (or at least in the tested configurations). The app will still work but will be slow. Any suggestions on th ematter are welcome as an issue or pull request :smile:
+Currently, tfjs-node does not work on the raspberry pi (or at least in the tested configurations). The app will still work but will be slow. Any suggestions on the matter are welcome as an issue or pull request :smile:
 
 ## How To Use
 
