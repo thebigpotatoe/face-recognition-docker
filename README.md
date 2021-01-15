@@ -4,7 +4,7 @@
 
 This repo is the base of the docker hub image thebigpotatoe/face-recognition-docker. It wraps the incredible [face-api.js](#https://github.com/justadudewhohacks/face-api.js/) library using nodejs and express to deliver a flexible http server for facial recognition in a container.
 
-This application can be run in a container directly from docker hub, or the express app can be run locally if desired. Just follow the Readme for more info.
+This application can be run in a container directly from docker hub on multiple architectures, or the express app can be run locally if desired. Just follow the Readme for more info.
 
 ## Contents
 
@@ -25,6 +25,10 @@ docker run \
 ```
 
 > Note this example is to get your feet wet, it does not provide facial recognition until you follow the [inject descriptors](#Injecting-Descriptors) section
+
+## Current Limitaions
+
+Currently, tfjs-node does not work on the raspberry pi (or at least in the tested configurations). The app will still work but will be slow. Any suggestions on th ematter are welcome as an issue or pull request :smile:
 
 ## How To Use
 
