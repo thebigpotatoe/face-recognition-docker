@@ -1,3 +1,7 @@
+# Build commands
+# docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t thebigpotatoe/face-recognition-docker:latest .
+# docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -f ./Dockerfiles/build-no-tfjs.dockerfile -t thebigpotatoe/face-recognition-docker:no-tfjs .
+
 # Specify a build image
 FROM node:15-slim
 
