@@ -44,7 +44,7 @@ Since you most likely have docker installed the easiest way to run the `descript
 > Note that buildx is required but supported out of the box by modern docker builds. If exporting the files does not work correctly or not produce any errors on failure you may need to find how to enable buildx on your machine. If you are having issues on your platform exporting the descriptors, look for how to use buildx on your platform.
 
 ```docker
-docker buildx build -f build-descriptors.dockerfile -o descriptor_creator .
+docker buildx build -f ./Dockerfiles/build-descriptors.dockerfile -o descriptor_creator .
 ```
 
 ### Using Node JS
