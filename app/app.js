@@ -4,6 +4,16 @@ weights_path = process.env.WEIGHTS_PATH || './app/weights';
 descriptor_path = process.env.DESCRIPTOR_PATH || './app/descriptors.json';
 use_tf = process.env.USE_TF || 'true';
 
+// Handle kill commands gracefully
+process.on('SIGTERM', function () {
+    server.close();
+    process.exit(0);
+});
+process.on('SIGINT', function () {
+    server.close();
+    process.exit(0);
+});
+
 // Load Tensorflow.js 
 const os = require('os');
 if (use_tf === 'true' && os.arch() === 'x64') {
@@ -39,6 +49,6 @@ app.locals.detection_options = parse_detection_options(process.env.DETECTION_OPT
 app.use(require('./routes/index'));
 
 // Start the application
-app.listen(port, function () {
+let server = app.listen(port, function () {
     console.log(`Listening on port ${port}...`);
 });
