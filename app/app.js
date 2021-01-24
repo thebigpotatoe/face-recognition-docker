@@ -15,10 +15,12 @@ process.on('SIGINT', function () {
 });
 
 // Load Tensorflow.js 
-const os = require('os');
-if (use_tf === 'true' && os.arch() === 'x64') {
+try {
     const tf = require('@tensorflow/tfjs-node');
     console.log('Loaded tfjs-node version', tf.version_core);
+}
+catch (err) {
+    console.warn('Unable to load tfjs-node\n', err);
 }
 
 // Import the express modules
